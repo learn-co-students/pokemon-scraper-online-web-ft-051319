@@ -33,16 +33,9 @@ class Pokemon
     end.first
   end
   
-#   def alter_hp(name, db, type, hp)
-#     sql = "SELECT * FROM pokemon WHERE name = ? LIMIT 1;"
-#     pokemon_array = db.execute(sql, name)
-#     pokemon_array.map do |row|
-#       id = row[0]
-#       name = row[1]
-#       type = row[2]
-#       sql = "UPDATE pokemon SET name = ?, type = ?, hp = ? WHERE id = ?;"
-#       db.execute(sql, name, type, hp, id)
-#     end
-#   end
+   def alter_hp(hp, db)
+     sql = "UPDATE pokemon SET hp = ? WHERE id = ?;"
+     db.execute(sql, hp, self.id)
+   end
 
  end
