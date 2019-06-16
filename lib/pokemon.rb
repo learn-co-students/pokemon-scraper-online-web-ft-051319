@@ -1,13 +1,14 @@
 class Pokemon
-  attr_accessor :name, :type, :db
+  attr_accessor :name, :type, :db, :hp
   attr_reader :id
 
   
-  def initialize(id: nil, name:, type:, db:)
+  def initialize(id: nil, name:, type:, db:, hp: nil)
     @id = id
     @name = name
     @type = type
     @db = db
+    @hp = hp
   end
   
   def self.save(name, type, db)
@@ -27,9 +28,21 @@ class Pokemon
       LIMIT 1;
     SQL
     db.execute(sql, id).map do |row|
-      new_pokemon = self.new(id: row[0], name: row[1], type: row[2], db: db)
+      new_pokemon = self.new(id: row[0], name: row[1], type: row[2], db: db, hp: row[3])
       new_pokemon
     end.first
   end
   
-end
+#   def alter_hp(name, db, type, hp)
+#     sql = "SELECT * FROM pokemon WHERE name = ? LIMIT 1;"
+#     pokemon_array = db.execute(sql, name)
+#     pokemon_array.map do |row|
+#       id = row[0]
+#       name = row[1]
+#       type = row[2]
+#       sql = "UPDATE pokemon SET name = ?, type = ?, hp = ? WHERE id = ?;"
+#       db.execute(sql, name, type, hp, id)
+#     end
+#   end
+
+ end
