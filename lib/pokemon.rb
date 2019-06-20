@@ -15,6 +15,7 @@ class Pokemon
         INSERT INTO pokemon (name, type) VALUES (?, ?);
         SQL
         db.execute(sql, name, type) 
+        # db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", name, type)
     end
 
     def self.find(id, db)
@@ -30,5 +31,6 @@ class Pokemon
         UPDATE pokemon SET hp = ? WHERE id = ?;
         SQL
         db.execute(sql, hp, self.id)
+        # db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", new_hp, self.id)
     end
 end
